@@ -50,14 +50,16 @@ function love.update(dt)
   gStateMachine:update(dt)
   -- END --
 
+  if love.keyboard.wasPressed('escape') then
+    love.event.quit()
+  end
+
   -- START: Boilerplate global quit and keyboard monitoring functionality --
   function love.keypressed(key)
     love.keyboard.keysPressed[key] = true
   end
 
-  if love.keyboard.wasPressed('escape') then
-    love.event.quit()
-  end
+  love.keyboard.keysPressed = {}
   -- END --
 
   -- START: Boilerplate global window resize function --
