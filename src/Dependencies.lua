@@ -4,6 +4,8 @@ require('src.config')
 
 require('src.classes.Base')
 require('src.classes.Laser')
+require('src.classes.Enemy')
+require('src.classes.Enemies')
 require('src.states.BaseState')
 require('src.states.StartState')
 require('src.states.PlayState')
