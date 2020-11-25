@@ -18,9 +18,10 @@ function PlayState:update(dt)
   end
 
   self.enemies:update(dt)
-  --for k, enemy in pairs(self.enemies.enemy) do
-    --enemy:update(dt)
-  --end
+  
+  for k, enemy in pairs(self.enemies.enemy) do
+    enemy:update(dt)
+  end
 end
 
 function PlayState:render()
@@ -41,4 +42,7 @@ function PlayState:render()
   for key,text in pairs(self.lasers) do
     love.graphics.printf('Lasers: ' .. tostring(table.getn(self.lasers)), 0, VIRTUAL_HEIGHT / 2 + 40, VIRTUAL_WIDTH, 'center')
   end
+
+  love.graphics.printf('Box' .. self.enemies.x, 0, VIRTUAL_HEIGHT / 2 + 80, VIRTUAL_WIDTH, 'center')
+
 end

@@ -50,10 +50,11 @@ function love.update(dt)
   gStateMachine:update(dt)
   -- END --
 
+enemy
   if love.keyboard.wasPressed('escape') then
     love.event.quit()
   end
-
+  
   -- START: Boilerplate global quit and keyboard monitoring functionality --
   function love.keypressed(key)
     love.keyboard.keysPressed[key] = true
