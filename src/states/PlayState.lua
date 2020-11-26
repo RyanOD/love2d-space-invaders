@@ -19,14 +19,15 @@ function PlayState:update(dt)
 
   self.enemyFormation:update(dt)
   
-  for k, enemy in pairs(self.enemyFormation.enemy) do
-    enemy:update(dt)
-  end
+  --for k, enemy in pairs(self.enemyFormation.enemy) do
+    --enemy:update(dt)
+  --end
 
   for key, laser in ipairs(self.lasers) do
     for key, enemy in ipairs(self.enemyFormation.enemy) do
       if laser:collision(self.enemyFormation, enemy) then
-        table.remove(self.enemyFormation.enemy, key)
+        --table.remove(self.enemyFormation.enemy, key)
+        enemy.isActive = false
       end
     end
   end
@@ -50,5 +51,5 @@ function PlayState:render()
     love.graphics.printf('Lasers: ' .. tostring(table.getn(self.lasers)), 0, VIRTUAL_HEIGHT / 2 + 40, VIRTUAL_WIDTH, 'center')
   end
 
-  love.graphics.printf('Box' .. math.floor(self.enemyFormation.x), 0, VIRTUAL_HEIGHT / 2 + 80, VIRTUAL_WIDTH, 'center')
+  love.graphics.printf('Width = ' .. tostring(self.enemyFormation.width), 0, VIRTUAL_HEIGHT / 2 + 80, VIRTUAL_WIDTH, 'center')
 end

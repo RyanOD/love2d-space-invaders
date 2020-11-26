@@ -1,10 +1,11 @@
 Enemy = Class{}
 
-function Enemy:init(col, row, spacing)
-  self.xOffset = col * ENEMY_WIDTH * spacing
-  self.yOffset = row * ENEMY_HEIGHT * spacing
+function Enemy:init(row, col, spacing)
+  self.xOffset = (col - 1) * ENEMY_WIDTH * spacing
+  self.yOffset = (row - 1) * ENEMY_HEIGHT * spacing
   self.width = ENEMY_WIDTH
   self.height = ENEMY_HEIGHT
+  self.isActive = true
 end
 
 function Enemy:update(dt)
