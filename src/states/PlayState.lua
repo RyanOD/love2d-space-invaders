@@ -51,5 +51,6 @@ function PlayState:render()
     love.graphics.printf('Lasers: ' .. tostring(table.getn(self.lasers)), 0, VIRTUAL_HEIGHT / 2 + 40, VIRTUAL_WIDTH, 'center')
   end
 
-  love.graphics.printf('Width = ' .. tostring(self.enemyFormation.width), 0, VIRTUAL_HEIGHT / 2 + 80, VIRTUAL_WIDTH, 'center')
+  love.graphics.printf('xMin = ' .. tostring(self.enemyFormation.xMin), 0, VIRTUAL_HEIGHT / 2 + 80, VIRTUAL_WIDTH, 'center')
+  love.graphics.printf('xMax = ' .. tostring(self.enemyFormation.xMax), 0, VIRTUAL_HEIGHT / 2 + 100, VIRTUAL_WIDTH, 'center')
 end
