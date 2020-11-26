@@ -43,10 +43,10 @@ function EnemyFormation:update(dt)
 
   -- Track position of bounding box to move Enemy instances as a group vs. individually
   --if self.x + ENEMY_WIDTH * (self.spacing * (self.cols - 1) + 1) >= VIRTUAL_WIDTH then
-  if self.x + self.width >= VIRTUAL_WIDTH then
+  if self.x + self.xMax >= VIRTUAL_WIDTH then
     self.edgeFlag = true
     self.xStep = -self.xStep
-    self.x = VIRTUAL_WIDTH - ENEMY_WIDTH * (self.spacing * self.cols - 1) - 1
+    self.x = VIRTUAL_WIDTH - self.xMax - 1
   elseif self.x + self.xMin < 0 then
     self.edgeFlag = true
     self.xStep = -self.xStep
@@ -90,7 +90,7 @@ function EnemyFormation:xMaxCheck()
   for col=self.cols, 1, -1 do
     for row=self.rows, 1, -1 do
       if self.enemy[(col - 1) + (row - 1) * self.cols + 1].isActive then
-        return (col * 40)
+        return (col * 40) - 20
       end
     end
   end
