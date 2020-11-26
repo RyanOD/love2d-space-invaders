@@ -50,7 +50,6 @@ function love.update(dt)
   gStateMachine:update(dt)
   -- END --
 
-enemy
   if love.keyboard.wasPressed('escape') then
     love.event.quit()
   end
