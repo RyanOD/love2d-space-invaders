@@ -6,6 +6,7 @@ function Enemy:init(row, col, spacing)
   self.width = ENEMY_WIDTH
   self.height = ENEMY_HEIGHT
   self.isActive = true
+  self.isShooter = false
 end
 
 function Enemy:update(dt)

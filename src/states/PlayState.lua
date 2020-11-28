@@ -10,7 +10,7 @@ function PlayState:update(dt)
   self.base:update(dt)
 
   if love.keyboard.wasPressed('return') then
-    table.insert(self.lasers, Laser(self.base.x + 0.5 * self.base.width, self.base.y))
+    table.insert(self.lasers, Laser(self.base.x + 0.5 * self.base.width, self.base.y, 1))
   end
 
   for k, laser in pairs(self.lasers) do
@@ -19,16 +19,18 @@ function PlayState:update(dt)
 
   self.enemyFormation:update(dt)
   
-  --for k, enemy in pairs(self.enemyFormation.enemy) do
-    --enemy:update(dt)
-  --end
-
   for key, laser in ipairs(self.lasers) do
     for key, enemy in ipairs(self.enemyFormation.enemy) do
-      if laser:collision(self.enemyFormation, enemy) then
+      if laser:collision(self.enemyFormation.x + enemy.xOffset, self.enemyFormation.x + enemy.xOffset + enemy.width, self.enemyFormation.y + enemy.yOffset, self.enemyFormation.y + enemy.yOffset + enemy.height) then
         --table.remove(self.enemyFormation.enemy, key)
         enemy.isActive = false
       end
+    end
+  end
+
+  for key, laser in ipairs(self.enemyFormation.enemyLasers) do
+    if laser:collision(self.base.x, self.base.x + self.base.width, self.base.y, self.base.y + self.base.height) then
+      love.event.quit()
     end
   end
 end
