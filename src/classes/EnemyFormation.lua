@@ -125,12 +125,20 @@ end
 --]]
 function EnemyFormation:fireEnemyLaser()
   local col = math.random(self.cols)
+  --[[
   for key, enemy in ipairs(self.enemy) do
     for row=1, self.rows do
-      if not self.enemy[(row-1) * self.cols + col].isActive or row == self.rows then
-        table.insert(self.enemyLasers, Laser(self.enemy[col].xOffset + self.x, self.enemy[row].yOffset + 30 + self.y, -1))
+      if self.enemy[(row-1) * self.cols + col].isActive then
+        table.insert(self.enemyLasers, Laser(self.enemy[col].xOffset + self.x + 0.5 * enemy.width, self.enemy[row].yOffset + self.y + enemy.height, -1))
         --self.enemy[(row-1) * self.cols + col].isShooter = false
       end
+    end
+  end--]]
+
+  for row=1, self.rows do
+    if not self.enemy[(row-1) * self.cols + col].isActive then
+      table.insert(self.enemyLasers, Laser(self.enemy[(row-2) * self.cols + col].xOffset + self.x + self.enemy[(row-2) * self.cols + col].width * 0.5, self.enemy[(row-2) * self.cols + col].yOffset + self.y + self.enemy[(row-2) * self.cols + col].height, -1))
+      --self.enemy[(row-1) * self.cols + col].isShooter = false
     end
   end
 end
