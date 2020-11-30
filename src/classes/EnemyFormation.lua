@@ -138,12 +138,15 @@ function EnemyFormation:fireEnemyLaser()
 end
 
 function EnemyFormation:selectShooter()
-  local col = math.random(self.cols)
-  for row=1, self.rows do
-    if not self.enemy[(row-1) * self.cols + col].isActive then
-      return self.enemy[(row-2) * self.cols + col]
-    elseif row == self.rows then
-      return self.enemy[(row-1) * self.cols + col]
+  while true do
+    local col = math.random(self.cols)
+
+    for row=1, self.rows do
+      if not self.enemy[(row-1) * self.cols + col].isActive and row > 1 and self.enemy[(row-2) * self.cols + col].isActive then
+        return self.enemy[(row-2) * self.cols + col]
+      elseif self.enemy[(row-1) * self.cols + col].isActive and row == self.rows then
+        return self.enemy[(row-1) * self.cols + col]
+      end
     end
   end
 end

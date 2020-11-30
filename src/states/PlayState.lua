@@ -22,7 +22,6 @@ function PlayState:update(dt)
   for k, laser in ipairs(self.lasers) do
     for j, enemy in ipairs(self.enemyFormation.enemy) do
       if laser:collision(self.enemyFormation.x + enemy.xOffset, self.enemyFormation.x + enemy.xOffset + enemy.width, self.enemyFormation.y + enemy.yOffset, self.enemyFormation.y + enemy.yOffset + enemy.height) and enemy.isActive then
-        --table.remove(self.enemyFormation.enemy, key)
         enemy.isActive = false
         table.remove(self.lasers, k)
       end
