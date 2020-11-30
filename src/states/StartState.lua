@@ -5,7 +5,7 @@ function StartState:init()
 end
 
 function StartState:update(dt)
-  if love.keyboard.wasPressed('space') then
+  if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
     gStateMachine:change('play')
   end
 end
@@ -20,6 +20,6 @@ function StartState:render()
   love.graphics.printf('Space Invaders', 0, VIRTUAL_HEIGHT / 2 - 100, VIRTUAL_WIDTH, 'center')
 
   love.graphics.setFont(gFonts['menu'])
-  love.graphics.printf('Press space to start game', 0, VIRTUAL_HEIGHT / 2 + 40, VIRTUAL_WIDTH, 'center')
+  love.graphics.printf('Press enter to start game', 0, VIRTUAL_HEIGHT / 2 + 40, VIRTUAL_WIDTH, 'center')
 
 end

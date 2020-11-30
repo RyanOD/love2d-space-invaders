@@ -3,8 +3,8 @@ EnemyFormation = Class{}
 function EnemyFormation:init()
   self.x = 0
   self.y = 0
-  self.rows = 2
-  self.cols = 6
+  self.rows = 4
+  self.cols = 8
   self.xMin = 0
   self.xMax = self.cols * 40 - 20
   self.yMin = 0
@@ -140,7 +140,6 @@ end
 function EnemyFormation:selectShooter()
   while true do
     local col = math.random(self.cols)
-
     for row=1, self.rows do
       if not self.enemy[(row-1) * self.cols + col].isActive and row > 1 and self.enemy[(row-2) * self.cols + col].isActive then
         return self.enemy[(row-2) * self.cols + col]

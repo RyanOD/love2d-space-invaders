@@ -9,7 +9,7 @@ end
 function PlayState:update(dt)
   self.base:update(dt)
 
-  if love.keyboard.wasPressed('return') then
+  if love.keyboard.wasPressed('space') and #self.lasers == 0 then
     table.insert(self.lasers, Laser(self.base.x + 0.5 * self.base.width, self.base.y, 1))
   end
 
