@@ -7,12 +7,15 @@ end
 
 function PlayState:update(dt)
   self.base:update(dt)
+  if self.base.laser.isVisible then
+    self.base.laser:update(dt)
+  end
   self.enemyFormation:update(dt)
   
   for key, enemy in ipairs(self.enemyFormation.enemy) do
-    if self.base.laser:collision(self.enemyFormation.x + enemy.xOffset, self.enemyFormation.x + enemy.xOffset + enemy.width, self.enemyFormation.y + enemy.yOffset, self.enemyFormation.y + enemy.yOffset + enemy.height) and enemy.isActive then
+    if self.base.laser:collision(self.enemyFormation.x + enemy.xOffset, self.enemyFormation.x + enemy.xOffset + enemy.width, self.enemyFormation.y + enemy.yOffset, self.enemyFormation.y + enemy.yOffset + enemy.height) and enemy.isActive and self.base.laser.isVisible then
       enemy.isActive = false
-      self.base:laserReset()
+      self.base.laser:resetLaser()
     end
   end
 

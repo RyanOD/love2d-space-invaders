@@ -33,7 +33,8 @@ function love.load()
 
   gFonts = {
     ['title'] = love.graphics.newFont('fonts/mandalore.ttf', 56),
-    ['menu'] = love.graphics.newFont('fonts/gameplay.ttf', 14)
+    ['menu'] = love.graphics.newFont('fonts/gameplay.ttf', 14),
+    ['instructions'] = love.graphics.newFont('fonts/gameplay.ttf', 10)
   }
 
   gStateMachine = StateMachine{

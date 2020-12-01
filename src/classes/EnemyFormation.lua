@@ -1,15 +1,15 @@
 EnemyFormation = Class{}
 
 function EnemyFormation:init()
-  self.x = 0
-  self.y = 0
+  self.x = 10
+  self.y = 10
   self.rows = 4
   self.cols = 8
   self.xMin = 0
   self.xMax = self.cols * 40 - 20
   self.yMin = 0
   self.yMax = self.rows * 30 - 10
-  self.dx = 20
+  self.dx = 30
   self.spacing = 2
   self.enemy = self:generateEnemyFormation(self.cols, self.rows, self.spacing)
   self.timer = 0
@@ -48,7 +48,7 @@ function EnemyFormation:update(dt)
     laser:update(dt)
   end
   -- Track position of bounding box to move Enemy instances as a group vs. individually
-  --if self.x + ENEMY_WIDTH * (self.spacing * (self.cols - 1) + 1) >= VIRTUAL_WIDTH then
+  -- if self.x + ENEMY_WIDTH * (self.spacing * (self.cols - 1) + 1) >= VIRTUAL_WIDTH then
   if self.x + self.xMax >= VIRTUAL_WIDTH then
     self.edgeFlag = true
     self.xStep = -self.xStep
@@ -111,16 +111,16 @@ end
 
 function EnemyFormation:fireEnemyLaser()
   local shooter = self:selectShooter()
-  table.insert(self.enemyLasers, Laser(shooter.xOffset + shooter.width * 0.5 + self.x, shooter.yOffset + shooter.height + self.y, 1))
+  local laser = Laser(shooter.xOffset + shooter.width * 0.5 + self.x, shooter.yOffset + shooter.height + self.y, 1)
+  laser.isVisible = true
+  table.insert(self.enemyLasers, laser)
 end
 
 function EnemyFormation:selectShooter()
   while true do
     local col = math.random(self.cols)
-    for row=1, self.rows do
-      if not self.enemy[(row-1) * self.cols + col].isActive and row > 1 and self.enemy[(row-2) * self.cols + col].isActive then
-        return self.enemy[(row-2) * self.cols + col]
-      elseif self.enemy[(row-1) * self.cols + col].isActive and row == self.rows then
+    for row = self.rows, 1, -1 do
+      if self.enemy[(row-1) * self.cols + col].isActive then
         return self.enemy[(row-1) * self.cols + col]
       end
     end

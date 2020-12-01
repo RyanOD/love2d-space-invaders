@@ -21,5 +21,7 @@ function StartState:render()
 
   love.graphics.setFont(gFonts['menu'])
   love.graphics.printf('Press enter to start game', 0, VIRTUAL_HEIGHT / 2 + 40, VIRTUAL_WIDTH, 'center')
+  love.graphics.setFont(gFonts['instructions'])
+  love.graphics.printf('Use space bar to fire lasers', 0, VIRTUAL_HEIGHT / 2 + 70, VIRTUAL_WIDTH, 'center')
 
 end
