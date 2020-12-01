@@ -5,12 +5,13 @@ function Laser:init(x, y, direction)
   self.height = 10
   self.x = x
   self.y = y
-  self.dy = 150
+  self.dy = 120
   self.direction = direction
+  self.isVisible = false
 end
 
 function Laser:update(dt)
-  self.y = self.y - self.dy * dt * self.direction
+  self.y = self.y + self.dy * dt * self.direction
 end
 
 function Laser:render()

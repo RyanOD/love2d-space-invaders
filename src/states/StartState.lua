@@ -14,10 +14,10 @@ function StartState:render()
   love.graphics.setFont(gFonts['title'])
 
   love.graphics.setColor(60/255, 60/255, 73/255)
-  love.graphics.printf('Space Invaders', 0, VIRTUAL_HEIGHT / 2 - 97, VIRTUAL_WIDTH + 5, 'center')
+  love.graphics.printf('Place Invaders', 0, VIRTUAL_HEIGHT / 2 - 97, VIRTUAL_WIDTH + 5, 'center')
   
   love.graphics.setColor(gColorPalette['yellow'])
-  love.graphics.printf('Space Invaders', 0, VIRTUAL_HEIGHT / 2 - 100, VIRTUAL_WIDTH, 'center')
+  love.graphics.printf('Place Invaders', 0, VIRTUAL_HEIGHT / 2 - 100, VIRTUAL_WIDTH, 'center')
 
   love.graphics.setFont(gFonts['menu'])
   love.graphics.printf('Press enter to start game', 0, VIRTUAL_HEIGHT / 2 + 40, VIRTUAL_WIDTH, 'center')

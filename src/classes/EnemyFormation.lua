@@ -28,7 +28,6 @@ function EnemyFormation:update(dt)
 
   self.xMin = self:xMinCheck()
   self.xMax = self:xMaxCheck()
-  --self:shooterCheck()
 
   -- Simple timer to "step" the enemyFormation across screen and toggle edgeFlag
   if self.timer > self.stepTime then
@@ -109,32 +108,10 @@ function EnemyFormation:xMaxCheck()
     end
   end
 end
---[[
--- Function to set the shooters
-function EnemyFormation:shooterCheck()
-  for col=1, self.cols do
-    for row=1, self.rows do
-      if row == self.rows then
-        self.enemy[(col - 1) + (row - 1) * self.cols + 1].isShooter = true
-      elseif not self.enemy[(col - 1) + (row - 1) * self.cols + 1].isActive and row > 1 then
-        self.enemy[(col - 1) + (row - 1) * self.cols].isShooter = false
-      end
-    end
-  end
-end
 
 function EnemyFormation:fireEnemyLaser()
-  local col = math.random(self.cols)
-  for row=1, self.rows do
-    if not self.enemy[(row-1) * self.cols + col].isActive then
-      table.insert(self.enemyLasers, Laser(self.enemy[(row-2) * self.cols + col].xOffset + self.x + self.enemy[(row-2) * self.cols + col].width * 0.5, self.enemy[(row-2) * self.cols + col].yOffset + self.y + self.enemy[(row-2) * self.cols + col].height, -1))
-    end
-  end
-end
---]]
-function EnemyFormation:fireEnemyLaser()
   local shooter = self:selectShooter()
-  table.insert(self.enemyLasers, Laser(shooter.xOffset + shooter.width * 0.5 + self.x, shooter.yOffset + shooter.height + self.y, -1))
+  table.insert(self.enemyLasers, Laser(shooter.xOffset + shooter.width * 0.5 + self.x, shooter.yOffset + shooter.height + self.y, 1))
 end
 
 function EnemyFormation:selectShooter()
