@@ -1,10 +1,10 @@
 Enemy = Class{}
 
-function Enemy:init(row, col, spacing)
+function Enemy:init(width, height, row, col, spacing)
   self.xOffset = (col - 1) * ENEMY_WIDTH * spacing
   self.yOffset = (row - 1) * ENEMY_HEIGHT * spacing
-  self.width = ENEMY_WIDTH
-  self.height = ENEMY_HEIGHT
+  self.width = width
+  self.height = height
   self.isActive = true
   self.isShooter = false
 end

@@ -28,7 +28,7 @@ function Laser:collision(xMin, xMax, yMin, yMax)
     return false
   elseif self.y > yMax then
     return false
-  elseif self.x + self.height < xMin then
+  elseif self.x + self.width < xMin then
     return false
   elseif self.x > xMax then
     return false

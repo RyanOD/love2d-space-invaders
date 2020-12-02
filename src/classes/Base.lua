@@ -17,11 +17,11 @@ function Base:update(dt)
   end
 
   if love.keyboard.wasPressed('space') and not self.laser.isVisible then
-    self.laser:fireLaser(self.x, self.y, 150, -1)
+    self.laser:fireLaser(self.x + 0.5 * self.width, self.y, 150, -1)
   end
 end
 
 function Base:render()
-  love.graphics.rectangle("fill", self.x, self.y, self.width, self.height )
+  love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
   self.laser:render()
 end

@@ -81,7 +81,7 @@ function EnemyFormation:generateEnemyFormation()
   local enemies = {}
   for row=1, self.rows do
     for col=1, self.cols do
-      table.insert(enemies, Enemy(row, col, self.spacing))
+      table.insert(enemies, Enemy(12, 12, row, col, self.spacing))
     end
   end
   return enemies

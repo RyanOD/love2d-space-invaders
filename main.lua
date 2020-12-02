@@ -24,7 +24,8 @@ function love.load()
     ['yellow'] = {255/255, 255/255, 51/255},
     ['black'] = {7/255, 7/255, 8/255},
     ['lgreen'] = {85/255, 170/255, 68/255},
-    ['dgreen'] = {71/255, 85/255, 34/255}
+    ['dgreen'] = {71/255, 85/255, 34/255},
+    ['white'] = {255/255, 255/255, 255/255}
   }
 
   gTextures = {
@@ -76,7 +77,7 @@ function love.draw()
     local backgroundWidth = gTextures['background']:getWidth()
     local backgroundHeight = gTextures['background']:getHeight()
 
-    love.graphics.draw(gTextures['background'], 0, 0, 0, VIRTUAL_WIDTH/(backgroundWidth - 1), VIRTUAL_HEIGHT/(backgroundHeight - 1))
+    --love.graphics.draw(gTextures['background'], 0, 0, 0, VIRTUAL_WIDTH/(backgroundWidth - 1), VIRTUAL_HEIGHT/(backgroundHeight - 1))
 
     gStateMachine:render()
   push:apply('end')
