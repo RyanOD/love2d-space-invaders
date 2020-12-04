@@ -2,7 +2,7 @@ EnemyFormation = Class{}
 
 function EnemyFormation:init()
   self.x = 10
-  self.y = 10
+  self.y = 20
   self.rows = 4
   self.cols = 8
   self.xMin = 0
@@ -26,9 +26,13 @@ end
 function EnemyFormation:update(dt)
   self.timer = self.timer + dt
 
-  self.xMin = self:xMinCheck()
-  self.xMax = self:xMaxCheck()
-
+  if #self.enemy == 0 then
+    gStateMachine:change('win')
+  else
+    self.xMin = self:xMinCheck()
+    self.xMax = self:xMaxCheck()
+  end
+  
   -- Simple timer to "step" the enemyFormation across screen and toggle edgeFlag
   if self.timer > self.stepTime then
     if not self.edgeFlag then

@@ -35,13 +35,15 @@ function love.load()
   gFonts = {
     ['title'] = love.graphics.newFont('fonts/mandalore.ttf', 56),
     ['menu'] = love.graphics.newFont('fonts/gameplay.ttf', 14),
-    ['instructions'] = love.graphics.newFont('fonts/gameplay.ttf', 10)
+    ['instructions'] = love.graphics.newFont('fonts/gameplay.ttf', 10),
+    ['stats'] = love.graphics.newFont('fonts/gameplay.ttf', 6)
   }
 
   gStateMachine = StateMachine{
     ['start']  = function() return StartState() end,
     ['play'] = function() return PlayState() end,
-    ['gameOver'] = function() return GameOverState() end
+    ['win'] = function() return WinState() end,
+    ['gameover'] = function() return GameOverState() end
   }
 
   gStateMachine:change('start')

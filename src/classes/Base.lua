@@ -2,9 +2,9 @@ Base = Class{}
 
 function Base:init()
   self.x = VIRTUAL_WIDTH / 2
-  self.y = VIRTUAL_HEIGHT / 2 + 100
+  self.y = VIRTUAL_HEIGHT - 20
   self.width = 10
-  self.height = 20
+  self.height = 15
   self.dx = 120
   self.laser = Laser(self.x + 0.5 * self.width, self.y, -1, 250)
 end

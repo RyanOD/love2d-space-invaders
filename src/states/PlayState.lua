@@ -1,10 +1,11 @@
-PlayState = Class{includes = BaseState}
+PlayState = Class{__includes = BaseState}
 
 function PlayState:enter(params)
   self.starfield = Starfield()
   self.base = Base()
   self.shelter = Shelter()
   self.enemyFormation = EnemyFormation()
+  self.score = 0
 end
 
 function PlayState:update(dt)
@@ -18,12 +19,13 @@ function PlayState:update(dt)
     if self.base.laser:collision(self.enemyFormation.x + enemy.xOffset, self.enemyFormation.x + enemy.xOffset + enemy.width, self.enemyFormation.y + enemy.yOffset, self.enemyFormation.y + enemy.yOffset + enemy.height) and enemy.isActive and self.base.laser.isVisible then
       enemy.isActive = false
       self.base.laser:resetLaser()
+      self.score = self.score + 10
     end
   end
 
   for key, laser in ipairs(self.enemyFormation.enemyLasers) do
     if laser:collision(self.base.x, self.base.x + self.base.width, self.base.y, self.base.y + self.base.height) then
-      love.event.quit()
+      gStateMachine:change('gameover')
     end
 
     if laser:collision(self.base.laser.x, self.base.laser.x + self.base.laser.width, self.base.laser.y, self.base.laser.y + self.base.laser.height) then
@@ -47,11 +49,6 @@ function PlayState:render()
   self.enemyFormation:render()
   self.shelter:render()
 
-  --love.graphics.setFont(gFonts['menu'])
-  --love.graphics.setColor(gColorPalette['dgreen'], 1)
-  ---for key,text in pairs(self.lasers) do
-    --love.graphics.printf('Lasers: ' .. tostring(table.getn(self.lasers)), 0, VIRTUAL_HEIGHT / 2 + 40, VIRTUAL_WIDTH, 'center')
-  --end
-
-  --love.graphics.printf('xMin = ' .. tostring(self.enemyFormation.xMin), 0, VIRTUAL_HEIGHT / 2 + 80, VIRTUAL_WIDTH, 'center')
+  love.graphics.setFont(gFonts['stats'])
+  love.graphics.printf('Score: ' .. self.score, 0, 5, VIRTUAL_WIDTH - 40, 'right')
 end
