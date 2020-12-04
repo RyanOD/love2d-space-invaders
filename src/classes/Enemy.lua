@@ -9,15 +9,11 @@ function Enemy:init(width, height, row, col, spacing)
   self.isShooter = false
 end
 
-function Enemy:update(dt)
-
-end
-
 function Enemy:render(formationX, formationY, stepFlag)
   if stepFlag then
-    love.graphics.setColor( gColorPalette['yellow'], 1)
+    love.graphics.setColor(gColorPalette['yellow'], 1)
   else
-    love.graphics.setColor( gColorPalette['lgreen'], 1)
+    love.graphics.setColor(gColorPalette['lgreen'], 1)
   end
   love.graphics.rectangle("fill", formationX + self.xOffset, formationY + self.yOffset, self.width, self.height)
 end

@@ -3,6 +3,7 @@ Class = require('lib.class')
 require('src.config')
 
 require('src.classes.Starfield')
+require('src.classes.Shelter')
 require('src.classes.Base')
 require('src.classes.Laser')
 require('src.classes.Enemy')

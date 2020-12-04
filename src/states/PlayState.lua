@@ -1,9 +1,10 @@
 PlayState = Class{includes = BaseState}
 
 function PlayState:enter(params)
-  self.base = Base()
-  self.enemyFormation = EnemyFormation()
   self.starfield = Starfield()
+  self.base = Base()
+  self.shelter = Shelter()
+  self.enemyFormation = EnemyFormation()
 end
 
 function PlayState:update(dt)
@@ -26,20 +27,28 @@ function PlayState:update(dt)
     end
 
     if laser:collision(self.base.laser.x, self.base.laser.x + self.base.laser.width, self.base.laser.y, self.base.laser.y + self.base.laser.height) then
-      love.event.quit()
+      laser:resetLaser()
+      self.base.laser:resetLaser()
+    end
+
+    for _, shelter in ipairs(self.shelter.shelters) do
+      if laser:collision(shelter.x, shelter.x + self.shelter.width, shelter.y, shelter.y + self.shelter.height) then
+        laser:resetLaser()
+      elseif self.base.laser:collision(shelter.x, shelter.x + self.shelter.width, shelter.y, shelter.y + self.shelter.height) then
+        self.base.laser:resetLaser()
+      end
     end
   end
-
-
 end
 
 function PlayState:render()
+  self.starfield:render()
   self.base:render()
   self.enemyFormation:render()
-  self.starfield:render()
+  self.shelter:render()
 
-  love.graphics.setFont(gFonts['menu'])
-  love.graphics.setColor(gColorPalette['dgreen'], 1)
+  --love.graphics.setFont(gFonts['menu'])
+  --love.graphics.setColor(gColorPalette['dgreen'], 1)
   ---for key,text in pairs(self.lasers) do
     --love.graphics.printf('Lasers: ' .. tostring(table.getn(self.lasers)), 0, VIRTUAL_HEIGHT / 2 + 40, VIRTUAL_WIDTH, 'center')
   --end

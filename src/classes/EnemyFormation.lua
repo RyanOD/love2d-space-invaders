@@ -47,8 +47,8 @@ function EnemyFormation:update(dt)
   for key, laser in pairs(self.enemyLasers) do
     laser:update(dt)
   end
+
   -- Track position of bounding box to move Enemy instances as a group vs. individually
-  -- if self.x + ENEMY_WIDTH * (self.spacing * (self.cols - 1) + 1) >= VIRTUAL_WIDTH then
   if self.x + self.xMax >= VIRTUAL_WIDTH then
     self.edgeFlag = true
     self.xStep = -self.xStep
@@ -81,7 +81,7 @@ function EnemyFormation:generateEnemyFormation()
   local enemies = {}
   for row=1, self.rows do
     for col=1, self.cols do
-      table.insert(enemies, Enemy(12, 12, row, col, self.spacing))
+      table.insert(enemies, Enemy(6 + row * 2, 6 + row * 2, row, col, self.spacing))
     end
   end
   return enemies

@@ -29,7 +29,7 @@ function love.load()
   }
 
   gTextures = {
-    ['background'] = love.graphics.newImage('graphics/background.png')
+
   }
 
   gFonts = {
@@ -74,17 +74,8 @@ end
 
 function love.draw()
   push:apply('start')
-    local backgroundWidth = gTextures['background']:getWidth()
-    local backgroundHeight = gTextures['background']:getHeight()
-
-    --love.graphics.draw(gTextures['background'], 0, 0, 0, VIRTUAL_WIDTH/(backgroundWidth - 1), VIRTUAL_HEIGHT/(backgroundHeight - 1))
-
     gStateMachine:render()
   push:apply('end')
-end
-
-function love.render()
-
 end
 
 -- START: Boilerplate boolean function to detect keyboard keys pressed --
