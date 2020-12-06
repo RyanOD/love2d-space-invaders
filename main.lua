@@ -29,7 +29,7 @@ function love.load()
   }
 
   gTextures = {
-
+    ['particle'] = love.graphics.newImage('graphics/particle.png')
   }
 
   gFonts = {

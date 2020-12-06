@@ -2,7 +2,7 @@ Base = Class{}
 
 function Base:init()
   self.x = VIRTUAL_WIDTH / 2
-  self.y = VIRTUAL_HEIGHT - 20
+  self.y = VIRTUAL_HEIGHT - 30
   self.width = 10
   self.height = 15
   self.dx = 120
@@ -24,4 +24,5 @@ end
 function Base:render()
   love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
   self.laser:render()
+  self.laser:renderParticles()
 end

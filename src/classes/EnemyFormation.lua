@@ -72,10 +72,12 @@ function EnemyFormation:render()
     end
   end
 
+  -- Track enemy lasers that hit the ground and trigger explosion
   for key, laser in pairs(self.enemyLasers) do
-    if laser.y > VIRTUAL_HEIGHT then
+    if laser.y + laser.height > VIRTUAL_HEIGHT - 10 then
       table.remove(self.enemyLasers, key)
     end
+    
     laser:render()
   end
 end

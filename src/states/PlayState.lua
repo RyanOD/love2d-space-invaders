@@ -6,10 +6,13 @@ function PlayState:enter(params)
   self.shelter = Shelter()
   self.enemyFormation = EnemyFormation()
   self.score = 0
+  self.ufo = UFO()
+  self.timer = 0
 end
 
 function PlayState:update(dt)
   self.base:update(dt)
+
   if self.base.laser.isVisible then
     self.base.laser:update(dt)
   end
@@ -28,9 +31,10 @@ function PlayState:update(dt)
       gStateMachine:change('gameover')
     end
 
-    if laser:collision(self.base.laser.x, self.base.laser.x + self.base.laser.width, self.base.laser.y, self.base.laser.y + self.base.laser.height) then
+    if laser:collision(self.base.laser.x, self.base.laser.x + self.base.laser.width, self.base.laser.y, self.base.laser.y + self.base.laser.height) and laser.isVisible and self.base.laser.isVisible then
       laser:resetLaser()
       self.base.laser:resetLaser()
+      self.score = self.score + 5
     end
 
     for _, shelter in ipairs(self.shelter.shelters) do
@@ -40,6 +44,7 @@ function PlayState:update(dt)
         self.base.laser:resetLaser()
       end
     end
+    self.ufo:update(dt)
   end
 end
 
@@ -48,7 +53,11 @@ function PlayState:render()
   self.base:render()
   self.enemyFormation:render()
   self.shelter:render()
+  self.ufo:render()
 
   love.graphics.setFont(gFonts['stats'])
   love.graphics.printf('Score: ' .. self.score, 0, 5, VIRTUAL_WIDTH - 40, 'right')
+
+  love.graphics.setColor(gColorPalette['white'])
+  love.graphics.rectangle('fill', 0, VIRTUAL_HEIGHT - 10, VIRTUAL_WIDTH, 1)
 end

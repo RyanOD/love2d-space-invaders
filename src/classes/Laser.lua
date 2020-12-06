@@ -8,6 +8,11 @@ function Laser:init(x, y, direction, dy)
   self.dy = dy or 150
   self.direction = direction
   self.isVisible = false
+
+  self.psystem = love.graphics.newParticleSystem(gTextures['particle'], 64)
+  self.psystem:setParticleLifetime(0.5, 1)
+  self.psystem:setLinearAcceleration(-15, 0, 15, 80)
+  self.psystem:setEmissionArea('normal', 10, 10)
 end
 
 function Laser:update(dt)
@@ -15,6 +20,7 @@ function Laser:update(dt)
   if self.y < 0 then
     self:resetLaser()
   end
+  self.psystem:update(dt)
 end
 
 function Laser:render()
@@ -46,4 +52,8 @@ function Laser:resetLaser()
   self.isVisible = false
   self.x = 0
   self.y = 0
+end
+
+function Laser:renderParticles()
+  love.graphics.draw(self.psystem, self.x + 16, self.y + 8)
 end

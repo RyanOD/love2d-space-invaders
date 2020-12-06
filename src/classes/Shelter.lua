@@ -4,8 +4,11 @@ function Shelter:init()
   self.width = 35
   self.height = 15
   self.x = VIRTUAL_WIDTH / 5
-  self.y = VIRTUAL_HEIGHT - 40
-  self.shelters = {{x=self.x - self.width / 2, y=self.y}, {x=self.x * 2 - self.width / 2, y=self.y}, {x=self.x * 3 - self.width / 2, y=self.y}, {x=self.x * 4 - self.width / 2, y=self.y}}
+  self.y = VIRTUAL_HEIGHT - 50
+  self.shelters = {{x=self.x - self.width / 2, y=self.y},
+                   {x=self.x * 2 - self.width / 2, y=self.y},
+                   {x=self.x * 3 - self.width / 2, y=self.y},
+                   {x=self.x * 4 - self.width / 2, y=self.y}}
 end
 
 function Shelter:render()
