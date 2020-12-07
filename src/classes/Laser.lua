@@ -29,19 +29,6 @@ function Laser:render()
   end
 end
 
-function Laser:collision(xMin, xMax, yMin, yMax)
-  if self.y + self.height < yMin then
-    return false
-  elseif self.y > yMax then
-    return false
-  elseif self.x + self.width < xMin then
-    return false
-  elseif self.x > xMax then
-    return false
-  end
-  return true
-end
-
 function Laser:fireLaser(x, y)
   self.isVisible = true
   self.x = x

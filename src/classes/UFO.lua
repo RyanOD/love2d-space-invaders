@@ -3,7 +3,7 @@ UFO = Class{}
 function UFO:init()
   self.x = -30
   self.y = 15
-  self.dx = 40
+  self.dx = 70
   self.height = 5
   self.width = 25
   self.timer = 0
