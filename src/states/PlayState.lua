@@ -4,7 +4,7 @@ function PlayState:enter(params)
   self.starfield = Starfield()
   self.base = Base()
   self.shelterMgr = ShelterMgr()
-  self.enemyFormation = EnemyFormation()
+  self.enemyMgr = EnemyMgr()
   self.score = 0
   self.ufo = UFO()
   self.timer = 0
@@ -13,23 +13,21 @@ end
 function PlayState:update(dt)
   self.base:update(dt)
   self.ufo:update(dt)
-  
+
   if self.base.laser.isVisible then
     self.base.laser:update(dt)
   end
-  self.enemyFormation:update(dt)
+  self.enemyMgr:update(dt)
   
-  --[[
-  for key, enemy in ipairs(self.enemyFormation.enemy) do
-    if self.base.laser:collision(self.enemyFormation.x + enemy.xOffset, self.enemyFormation.x + enemy.xOffset + enemy.width, self.enemyFormation.y + enemy.yOffset, self.enemyFormation.y + enemy.yOffset + enemy.height) and enemy.isActive and self.base.laser.isVisible then
+  for key, enemy in ipairs(self.enemyMgr.enemy) do
+    if self:collision(self.base.laser, enemy) and enemy.isActive and self.base.laser.isVisible then
       enemy.isActive = false
       self.base.laser:resetLaser()
       self.score = self.score + 10
     end
   end
-  --]]
 
-  for key, laser in ipairs(self.enemyFormation.enemyLasers) do
+  for key, laser in ipairs(self.enemyMgr.enemyLasers) do
     if self:collision(laser, self.base) then
       gStateMachine:change('gameover')
     end
@@ -51,9 +49,9 @@ function PlayState:update(dt)
 end
 
 function PlayState:render()
-  self.starfield:render()
+  --self.starfield:render()
   self.base:render()
-  self.enemyFormation:render()
+  self.enemyMgr:render()
   self.shelterMgr:render()
   self.ufo:render()
 

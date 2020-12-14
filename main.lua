@@ -48,6 +48,14 @@ function love.load()
 
   gStateMachine:change('start')
 
+  -- Set up starfield background as a LOVE canvas object
+  canvas = love.graphics.newCanvas(VIRTUAL_WIDTH, VIRTUAL_HEIGHT)
+  love.graphics.setCanvas(canvas)
+  love.graphics.setColor(gColorPalette['white'], 1)
+  for i=1, 100 do
+    love.graphics.circle('fill', math.random() * VIRTUAL_WIDTH, math.random() * VIRTUAL_HEIGHT, 1)
+  end
+  love.graphics.setCanvas()
 end
 
 function love.update(dt)
@@ -76,6 +84,7 @@ end
 
 function love.draw()
   push:apply('start')
+    love.graphics.draw(canvas, 0, 0)
     gStateMachine:render()
   push:apply('end')
 end
