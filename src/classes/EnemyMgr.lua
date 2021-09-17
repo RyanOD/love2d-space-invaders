@@ -3,8 +3,9 @@ EnemyMgr = Class{}
 function EnemyMgr:init()
   self.x = 10
   self.y = 20
-  self.rows = 4
-  self.cols = 8
+  self.rows = 2
+  self.cols = 2
+  self.enemyCount = self.rows * self.cols
   self.xMin = 0
   self.xMax = self.cols * 40 - 20
   self.yMin = 0
@@ -26,7 +27,8 @@ end
 function EnemyMgr:update(dt)
   self.timer = self.timer + dt
 
-  if #self.enemy == 0 then
+  -- # is the length operator in Lua
+  if self.enemyCount == 0 then
     gStateMachine:change('win')
   else
     self.xMin = self:xMinCheck()
@@ -87,7 +89,7 @@ function EnemyMgr:render()
     laser:render()
   end
 
-  love.graphics.print("Container y = " .. self.y, VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT - 100)
+  love.graphics.print("Enemies = " .. self.enemyCount, VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT - 100)
 end
 
 -- Function to generate all enemy instances within the formation

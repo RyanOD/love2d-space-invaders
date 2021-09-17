@@ -14,16 +14,22 @@ function PlayState:update(dt)
   self.base:update(dt)
   self.ufo:update(dt)
 
+  if self.enemyMgr.enemyCount == 0 then
+    gStateMachine:change('win')
+  end
+
   if self.base.laser.isVisible then
     self.base.laser:update(dt)
   end
   self.enemyMgr:update(dt)
   
+  -- Check for collisions at the PlayState level as the Laser objects and the Enemy objects are both accessable
   for key, enemy in ipairs(self.enemyMgr.enemy) do
     if self:collision(self.base.laser, enemy) and enemy.isActive and self.base.laser.isVisible then
       enemy.isActive = false
       self.base.laser:resetLaser()
       self.score = self.score + 10
+      self.enemyMgr.enemyCount = self.enemyMgr.enemyCount - 1
     end
   end
 
@@ -38,6 +44,7 @@ function PlayState:update(dt)
       self.score = self.score + 5
     end
 
+    -- The underscore is used as a throwaway variable here.
     for _, shelter in ipairs(self.shelterMgr.shelters) do
       if self:collision(laser, shelter) then
         laser:resetLaser()

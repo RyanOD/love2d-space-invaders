@@ -33,7 +33,7 @@ function love.load()
   }
 
   gFonts = {
-    ['title'] = love.graphics.newFont('fonts/mandalore.ttf', 56),
+    ['title'] = love.graphics.newFont('fonts/mandalore.ttf', 50),
     ['menu'] = love.graphics.newFont('fonts/gameplay.ttf', 14),
     ['instructions'] = love.graphics.newFont('fonts/gameplay.ttf', 10),
     ['stats'] = love.graphics.newFont('fonts/gameplay.ttf', 6)
